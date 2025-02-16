@@ -10,6 +10,7 @@ import { useUserStore } from '@/store/modules/user'
 import defaultAvatar from '@/icons/svg/defaultAvatar.svg'
 import { useDialogStore } from '@/store/modules/dialog'
 import MaterialSymbolsReadMore from '~icons/material-symbols/read-more';
+import MdiMoreCircleOutline from '~icons/mdi/more-circle-outline';
 
 // 登录表单ref
 const loginFormRef = ref()
@@ -510,7 +511,7 @@ watch(newPasswordDialogVisible, (newVal) => {
       <div class="md:hidden mr-2">
         <el-dropdown trigger="click">
           <el-button class="mobile-menu-btn !bg-transparent !border-none !p-1">
-            <MaterialSymbolsReadMore class="text-2xl text-gray-600 dark:text-gray-300" />
+            <MdiMoreCircleOutline class="text-2xl text-gray-600 dark:text-gray-300" />
           </el-button>
           <template #dropdown>
             <el-dropdown-menu>
@@ -568,25 +569,30 @@ watch(newPasswordDialogVisible, (newVal) => {
       />
     </div>
 
-    <!-- 导航栏右侧 - 仅在PC端显示 -->
-    <div class="right hidden md:flex">
+    <!-- 导航栏右侧 -->
+    <div class="right hidden md:flex items-center">
       <el-menu :ellipsis="false" mode="horizontal" @select="handleSelect">
-        <div v-for="menu in menuList" :key="menu.path">
-          <el-sub-menu v-if="menu.children.length" :index="menu.path">
-            <template #title>
+        <!-- 导航菜单项 -->
+        <div class="flex items-center gap-8 mr-8">
+          <div v-for="menu in menuList" :key="menu.path">
+            <el-sub-menu v-if="menu.children.length" :index="menu.path">
+              <template #title>
+                <component :is="menu.icon" class="menu-icon"></component>
+                {{ menu.title }}
+              </template>
+              <el-menu-item v-for="subMenu in menu.children" :key="subMenu.path" :index="subMenu.path">
+                <component :is="subMenu.icon" class="menu-icon"></component>
+                {{ subMenu.title }}
+              </el-menu-item>
+            </el-sub-menu>
+            <el-menu-item v-else :index="menu.path">
               <component :is="menu.icon" class="menu-icon"></component>
               {{ menu.title }}
-            </template>
-            <el-menu-item v-for="subMenu in menu.children" :key="subMenu.path" :index="subMenu.path">
-              <component :is="subMenu.icon" class="menu-icon"></component>
-              {{ subMenu.title }}
             </el-menu-item>
-          </el-sub-menu>
-          <el-menu-item v-else :index="menu.path">
-            <component :is="menu.icon" class="menu-icon"></component>
-            {{ menu.title }}
-          </el-menu-item>
+          </div>
         </div>
+
+        <!-- 用户头像/登录按钮 -->
         <template v-if="isLogin">
           <el-dropdown @command="handleCommand" trigger="click">
             <el-avatar :size="40" class="cursor-pointer avatar">

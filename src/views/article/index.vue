@@ -140,6 +140,7 @@ const scrollElement = document.body;
           :editorId="po" 
           :modelValue="articleStore.getArticle().content" 
           :theme="darkStore.isDark ? 'dark' : 'light'"
+          noImgZoomIn
 
         />
         <!-- 点赞按钮 -->
@@ -298,6 +299,5 @@ const scrollElement = document.body;
     object-fit: cover;
   }
 } 
-
 
 </style>
