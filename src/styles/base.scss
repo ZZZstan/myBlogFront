@@ -1,0 +1,46 @@
+@use '/src/styles/tailwind.css';
+@use './layout.scss';
+@use './element/custom.scss';
+@use './dark.scss';
+*{
+  padding: 0;
+  margin: 0;
+}
+
+html{
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  font-size: 16px;
+}
+
+body{
+  width: 100%;
+  height: 100%;
+  //超出部分滚动
+  overflow: auto;
+}
+
+// /* 全局隐藏滚动条 */
+// * {
+//   scrollbar-width: none; 
+//   -ms-overflow-style: none; 
+//   &::-webkit-scrollbar {
+//     display: none; 
+//   }
+// }
+
+// /* 确保 html 和 body 也隐藏滚动条 */
+// html, body {
+//   scrollbar-width: none;
+//   -ms-overflow-style: none;
+//   &::-webkit-scrollbar {
+//     display: none;
+//   }
+// }
+
+// /* 保持可滚动性 */
+// .scrollable {
+//   overflow: auto;
+//   -webkit-overflow-scrolling: touch; /* 在iOS上提供更好的滚动体验 */
+// }

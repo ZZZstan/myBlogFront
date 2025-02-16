@@ -1,0 +1,25 @@
+.el-menu{
+  border-bottom: none !important;
+  background: transparent !important; 
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+
+
+  .el-menu-item{
+    background: transparent !important;
+    color: aliceblue;
+  }
+  .el-sub-menu__title{
+    color: aliceblue;
+  }
+
+  .el-sub-menu__title:hover{
+    background: transparent !important;
+  }
+}
+.el-card{
+  .el-card__body{
+    padding: 0;
+  }
+}
